@@ -84,11 +84,11 @@ func SetReceiver() {
 
 func test(){
 	option := &RabbitMQ.Option {
-		HostName: "112.74.56.154",
-		Port: 5673,
-		UserName: "yingxing",
-		Password: "waimaisaas2017",
-		VirtualHost: "YingXingTest",
+		HostName: "xxx.xxx.xxx.xxx",
+		Port: 8000,
+		UserName: "xxxxxxxx",
+		Password: "xxxxxxxx",
+		VirtualHost: "xxxxxxxx",
 	}
 	
 	if e := SetRabbitMQClient(option, "Test111", "MD5"); e != nil {
