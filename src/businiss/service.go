@@ -35,21 +35,13 @@ func (r *receiver) Retry() int {
 	return r.times
 }
 
-func SetReceiver() {
+func SetReceiver(option *RabbitMQ.Option) {
 
 	defer func(){
 		if x := recover(); x != nil {
 			fmt.Printf("SetReceiver panic err: %v", x)
 		}
 	}()
-
-	option := &RabbitMQ.Option {
-		HostName: "xxx.xxx.xxx.xxx",
-		Port: 8080,
-		UserName: "xxxxxx",
-		Password: "xxxxxx",
-		VirtualHost: "xxxxxx",
-	}
 	
 	if e := SetRabbitMQServer(option, "Test111", "MD5"); e != nil {
 		// log，异常处理
@@ -78,4 +70,18 @@ func SetReceiver() {
 			// log 处理异常
 		}
 	}()
+
+	test(option)
+}
+
+func test(option *RabbitMQ.Option){
+	
+	if e := SetRabbitMQClient(option, "Test111", "MD5"); e != nil {
+		fmt.Printf("client: %v", e)
+	}
+
+	r := GetRabbitClient()
+	if e := r.Send("MessageService", "SendMessageService", "golang testestest"); e != nil {
+		fmt.Printf("senderr: %v", e)
+	}
 }

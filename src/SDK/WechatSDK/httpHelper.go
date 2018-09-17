@@ -1,4 +1,4 @@
-package HttpHelper
+package WechatSDK
 
 import (
 	"crypto/tls"
